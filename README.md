@@ -1,7 +1,7 @@
 churn_model
 ==============================
 
-test project to test mlflow
+Let's implement MLOps in a easy way with mlflow, coockiecutter, pytest, flask, Heroku and github actions.
 
 Project Organization
 ------------
