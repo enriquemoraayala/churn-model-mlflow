@@ -4,40 +4,40 @@ stages:
     cmd: python src/data/load_data.py --config=params.yaml
     deps:
     - path: data/external/train.csv
-      md5: fb26cf4843dc67837dbd7604910fafe3
-      size: 388013
+      md5: d3f0223d7b1a88a1d10a9a04cd296e16
+      size: 391964
     - path: src/data/load_data.py
       md5: e9079f3959dac5da43a07aee930cb410
       size: 1499
     outs:
     - path: data/raw/train.csv
-      md5: ad413f2f650db2112a5f089fdde757c5
-      size: 115001
+      md5: 0c5457ae47db8e69582236d709c978fd
+      size: 116174
   split_data:
     cmd: python src/data/split_data.py --config=params.yaml
     deps:
     - path: data/raw/train.csv
-      md5: ad413f2f650db2112a5f089fdde757c5
-      size: 115001
+      md5: 0c5457ae47db8e69582236d709c978fd
+      size: 116174
     - path: src/data/split_data.py
       md5: 64a0db24f26b14498dc97e714cbf6088
       size: 1364
     outs:
     - path: data/processed/churn_test.csv
-      md5: 4b9d37e08c07cb1446b5c2cc4d5b8edd
-      size: 23085
+      md5: 769912526b7791817482b64cbac8aff6
+      size: 23354
     - path: data/processed/churn_train.csv
-      md5: 0c4ee5aeb060319c1362b1506a76e0d6
-      size: 92044
+      md5: da540f46b4b0d96f7f55c994f8533e3c
+      size: 92948
   model_train:
     cmd: python src/models/train_model.py --config=params.yaml
     deps:
     - path: data/processed/churn_test.csv
-      md5: 4b9d37e08c07cb1446b5c2cc4d5b8edd
-      size: 23085
+      md5: c2f940296c2cf1b6ccc0662a0929a822
+      size: 23160
     - path: data/processed/churn_train.csv
-      md5: 0c4ee5aeb060319c1362b1506a76e0d6
-      size: 92044
+      md5: 933ac9496fea20ac8030328a0132fa16
+      size: 92409
     - path: src/models/train_model.py
       md5: 3d23b58cd5f1d6401a99ec42c6ebdb6e
       size: 3777
@@ -49,13 +49,13 @@ stages:
     cmd: python src/models/production_model_selection.py --config=params.yaml
     deps:
     - path: src/models/production_model_selection.py
-      md5: d9356edb7b2cc9d3b635e0f531115e3e
-      size: 1779
+      md5: cbce75b7fabc0033521d25306790a371
+      size: 1681
     params:
       params.yaml:
         random_forest.max_depth: 10
         random_forest.n_estimators: 20
     outs:
     - path: models/model.joblib
-      md5: 7d025db3fe3c0567d34bb838f415fae3
-      size: 540163
+      md5: fe968ff293107b7ec3803b368d876d51
+      size: 639124
