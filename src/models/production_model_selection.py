@@ -10,6 +10,7 @@ def log_production_model(config_path):
     mlflow_config = config["mlflow_config"] 
     model_name = mlflow_config["registered_model_name"]
     model_dir = config["model_dir"]
+    webapp_model_dir = config["model_webapp_dir"]
     remote_server_uri = mlflow_config["remote_server_uri"]
 
     mlflow.set_tracking_uri(remote_server_uri)
@@ -40,6 +41,7 @@ def log_production_model(config_path):
 
     loaded_model = mlflow.pyfunc.load_model(logged_model)
     joblib.dump(loaded_model, model_dir)
+    joblib.dump(loaded_model, webapp_model_dir)
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
